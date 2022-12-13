@@ -24,12 +24,12 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requerimientos.txt ]; then pip install -r requerimientos.txt; fi
+    - name: Pruebas
+      run: |
+          pytest -v
     - name: Revisión de Estilo de código
       run: |
         pylint load_file.py
         pylint sparse_matrix_coordinate_format.py
         pylint sparse_matrix_csc.py
         pylint sparse_matrix_csr.py
-    - name: Tests
-      run: |
-        pytest -v
