@@ -1,0 +1,35 @@
+name: Python application
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "*" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Instalar dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requerimientos.txt ]; then pip install -r requerimientos.txt; fi
+    - name: Revisión de Estilo de código
+      run: |
+        pylint load_file.py
+        pylint sparce_matrix_coordinate_format.py
+        pylint sparse_matrix_csc.py
+        pylint sparse_matrix_csr.py
+    - name: Tests
+      run: |
+        pytest -v
