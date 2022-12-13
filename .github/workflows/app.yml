@@ -27,7 +27,7 @@ jobs:
     - name: Revisión de Estilo de código
       run: |
         pylint load_file.py
-        pylint sparce_matrix_coordinate_format.py
+        pylint sparse_matrix_coordinate_format.py
         pylint sparse_matrix_csc.py
         pylint sparse_matrix_csr.py
     - name: Tests
